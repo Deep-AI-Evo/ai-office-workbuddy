@@ -226,6 +226,17 @@
   .copy-btn:hover { background: var(--primary-dark); transform: scale(1.05); }
   .copy-btn.copied { background: var(--accent) !important; }
 
+  /* ===== 代码块容器（含复制按钮） ===== */
+  .code-wrap { position: relative; margin: 10px 0 14px; }
+  .copy-btn.mini {
+    position: absolute; top: 8px; right: 8px;
+    padding: 6px 14px; font-size: 12px;
+    background: var(--primary); opacity: 0.92;
+    border-radius: 6px; z-index: 2;
+  }
+  .copy-btn.mini:hover { opacity: 1; }
+  .code-wrap .code-block { margin: 0; }
+
   /* ===== 代码块 ===== */
   .code-block {
     background: var(--code-bg);
@@ -519,6 +530,7 @@
       <li>到练习文件夹查看生成的 Word 成品</li>
     </ol>
     <h3>指令模板</h3>
+<div class="code-wrap"><button class="copy-btn mini" onclick="copyCmd(this)">📋 复制</button>
 <div class="code-block">角色：你是壹我科技公司市场部经理林小溪，正在写第30周（7.15-7.21）工作周报。
 
 资料：请读取"练习素材/周报素材"文件夹里的三个文档：
@@ -533,7 +545,7 @@
 4. 需要领导协调的事项
 
 语气：专业、简洁、有结果导向，不要空话套话。
-输出格式：Word 文档，保存到练习文件夹，文件名"周报_W30_林小溪"。</div>
+输出格式：Word 文档，保存到练习文件夹，文件名"周报_W30_林小溪"。</div></div>
     <h3>✅ 检查成果</h3>
     <ul class="checklist">
       <li>生成了 周报_W30_林小溪.docx</li>
@@ -555,6 +567,7 @@
       <li>执行后查看：一个 Word 纪要 + 一个 Excel 行动项</li>
     </ol>
     <h3>指令模板</h3>
+<div class="code-wrap"><button class="copy-btn mini" onclick="copyCmd(this)">📋 复制</button>
 <div class="code-block">任务：把以下会议录音转写文本，整理成一份结构化会议纪要。
 
 资料：读取"练习素材/会议纪要素材/市场部Q2季度复盘会议速记.txt"。
@@ -569,7 +582,7 @@
 - 把所有"大概、可能、尽快、待会儿、回头"这类模糊表述，标注出来提醒我确认
 - 行动项清单单独导出一个 Excel
 
-输出：纪要存为 Word，行动项存为 Excel，都放练习文件夹。</div>
+输出：纪要存为 Word，行动项存为 Excel，都放练习文件夹。</div></div>
     <div class="tip">💡 技巧：你公司有自己的纪要格式，直接把模板贴进指令，AI会照你的格式来。</div>
   </div>
 </div>
@@ -586,6 +599,7 @@
       <li>执行后打开生成的PPTX，检查并手动微调</li>
     </ol>
     <h3>指令模板（口诀：四给）</h3>
+<div class="code-wrap"><button class="copy-btn mini" onclick="copyCmd(this)">📋 复制</button>
 <div class="code-block">任务：根据资料文档，生成一份汇报 PPT。
 
 资料：读取"练习素材/PPT素材/智能办公本Pro产品市场分析.docx"。
@@ -606,7 +620,7 @@ PPT 要求：
 - 每页2-4个要点，不要堆满文字
 - 数据部分请生成图表（柱状图/饼图）
 
-输出：PPTX 文件，存到练习文件夹。</div>
+输出：PPTX 文件，存到练习文件夹。</div></div>
     <div class="warn">⚠️ <strong>必做人工核对</strong>：① 配图检查（有无"开天窗"，手动补图）② 数据核对（关键数字自己算一遍）。把AI输出当80分初稿，你改20分钟到90分。</div>
   </div>
 </div>
@@ -623,6 +637,7 @@ PPT 要求：
       <li>查看整理结果 + 汇总清单</li>
     </ol>
     <h3>指令模板</h3>
+<div class="code-wrap"><button class="copy-btn mini" onclick="copyCmd(this)">📋 复制</button>
 <div class="code-block">任务：整理"练习素材/待整理"文件夹。
 
 规则：
@@ -631,7 +646,7 @@ PPT 要求：
 3. 表格子文件夹里的 Excel，移到"表格_已整理"文件夹
 4. 其他无法归类的，放进"其他"文件夹并列表告诉我
 
-整理完，给我一个汇总清单（Excel）：列明每个文件原名→新名→归到了哪个文件夹→发票金额（如有）。</div>
+整理完，给我一个汇总清单（Excel）：列明每个文件原名→新名→归到了哪个文件夹→发票金额（如有）。</div></div>
     <div class="tip">🚀 <strong>进阶玩法·Skill技能</strong>：这种整理每月都做？把它<strong>存成一个技能</strong>，下次点一下就自动跑。详见指令库附录B。</div>
   </div>
 </div>
