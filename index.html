@@ -1350,23 +1350,47 @@ function closeLogo() {
 
 // ===== 一键复制 =====
 function copyCmd(btn) {
-  const card = btn.closest('.cmd-card');
-  const codeBlock = card.querySelector('.code-block');
+  // 兼容两种结构：指令库(cmd-card) 和 手册(code-wrap)，找最近的代码块
+  let codeBlock = null;
+  const cmdCard = btn.closest('.cmd-card');
+  if (cmdCard) {
+    codeBlock = cmdCard.querySelector('.code-block');
+  }
+  if (!codeBlock) {
+    const codeWrap = btn.closest('.code-wrap');
+    if (codeWrap) codeBlock = codeWrap.querySelector('.code-block');
+  }
+  if (!codeBlock) {
+    alert('未找到指令内容');
+    return;
+  }
   const text = codeBlock.innerText;
 
-  navigator.clipboard.writeText(text).then(function() {
-    showSuccess(btn);
-  }).catch(function() {
+  // 复制：优先用现代API，降级用 execCommand，确保各种环境都能用
+  const doFallback = function() {
     const textarea = document.createElement('textarea');
     textarea.value = text;
     textarea.style.position = 'fixed';
+    textarea.style.top = '0';
+    textarea.style.left = '0';
     textarea.style.opacity = '0';
     document.body.appendChild(textarea);
+    textarea.focus();
     textarea.select();
-    try { document.execCommand('copy'); showSuccess(btn); }
-    catch (e) { alert('复制失败，请手动选择文本复制'); }
+    textarea.setSelectionRange(0, text.length);  // 兼容移动端
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
     document.body.removeChild(textarea);
-  });
+    if (ok) { showSuccess(btn); } else { alert('复制失败，请手动选择文本复制'); }
+  };
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(function() {
+      showSuccess(btn);
+    }).catch(doFallback);
+  } else {
+    doFallback();
+  }
 }
 function showSuccess(btn) {
   const originalText = btn.innerHTML;
